@@ -10,7 +10,7 @@ import { ChallengeBox } from "../components/ChallengeBox";
 import styles from "../styles/pages/Home.module.css";
 import { CountdownProvider } from "../contexts/CountdownContext";
 import { ChallengesProvider } from "../contexts/ChallengesContext";
-import { LoginPage } from "../components/LoginPage";
+import { Login } from "./login";
 
 interface HomeProps {
   level: number;
@@ -31,8 +31,10 @@ export default function Home(props: HomeProps) {
         <Head>
           <title>Início | move.it</title>
         </Head>
-        
-        {ProfileLogged ? (
+
+        {!(ProfileLogged) ? (
+          <Login />
+        ) : (
           <>
             <ExperienceBar />
             <CountdownProvider>
@@ -48,8 +50,6 @@ export default function Home(props: HomeProps) {
               </section>
             </CountdownProvider>
           </>
-        ) : (
-          <LoginPage />
         )}
       </div>
     </ChallengesProvider>
